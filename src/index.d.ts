@@ -1886,7 +1886,7 @@ declare module 'react-native-firebase' {
          * @param name The name of the https callable function.
          * @return The `HttpsCallable` instance.
          */
-        httpsCallable(name: string): HttpsCallable;
+        httpsCallable(name: string, region?: string): HttpsCallable;
       }
 
       /**

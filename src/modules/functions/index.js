@@ -58,9 +58,9 @@ export default class Functions extends ModuleBase {
    * Returns a reference to the callable https trigger with the given name.
    * @param name The name of the trigger.
    */
-  httpsCallable(name: string): HttpsCallable {
+  httpsCallable(name: string, region?: string): HttpsCallable {
     return (data?: any): HttpsCallablePromise => {
-      const promise = getNativeModule(this).httpsCallable(name, { data });
+      const promise = getNativeModule(this).httpsCallable(name, region, { data });
       return promise.then(errorOrResult);
     };
   }

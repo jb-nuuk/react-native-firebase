@@ -17,7 +17,21 @@ RCT_EXPORT_METHOD(httpsCallable:
                   rejecter:
                   (RCTPromiseRejectBlock) reject
                   ) {
-    FIRFunctions *functions = [FIRFunctions functions];
+    [self httpsCallable: name region: @"us-central1" wrapper: wrapper resolver: resolver resolve: resolve reject: reject];
+}
+
+RCT_EXPORT_METHOD(httpsCallable:
+                  (NSString *) name
+                  region:
+                  (NSString *) region
+                  wrapper:
+                  (NSDictionary *) wrapper
+                  resolver:
+                  (RCTPromiseResolveBlock) resolve
+                  rejecter:
+                  (RCTPromiseRejectBlock) reject
+                  ) {
+    FIRFunctions *functions = [FIRFunctions functionsWithRegion: region];
     
     [[functions HTTPSCallableWithName:name] callWithObject:[wrapper valueForKey:@"data"] completion:^(FIRHTTPSCallableResult * _Nullable result, NSError * _Nullable error) {
         if (error) {
